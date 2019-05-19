@@ -1,0 +1,35 @@
+﻿@model IEnumerable<University>
+@{
+    ViewData["Title"] = "UniversityPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="companies-info">
+    <div class="container">
+        <div class="company-title">
+            <h3>All Universities</h3>
+        </div><!--company-title end-->
+        <div class="companies-list">
+            <div class="row">
+
+                @foreach (var aa in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="company_profile_info">
+                            <div class="company-up-info">
+                                <img src="~/images/resources/cmp-icon.png" alt="">
+                                <h3>@aa.UniversityName</h3>
+                                <h4>@aa.City</h4>
+                                <h4>Phone : @aa.UniversityPhone</h4>
+
+                            </div>
+                            <a href="http://@aa.Website" title="" class="view-more-pro">@aa.Website</a>
+                        </div><!--company_profile_info end-->
+                    </div>
+                }
+
+            </div>
+        </div><!--companies-list end-->
+    </div>
+</section><!--companies-info end-->

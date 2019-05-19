@@ -1,0 +1,286 @@
+﻿@model IEnumerable<User>
+
+
+@{
+    ViewData["Title"] = "Index";
+   
+}
+
+
+
+<main>
+    <div class="wrapper">
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+                            <div class="main-left-sidebar no-margin">
+                                <div class="user-data full-width">
+                                    <div class="user-profile">
+                                        <div class="username-dt">
+                                            <div class="usr-pic">
+                                                <img src="~/images/resources/user-pic'@ViewBag.usermodeli.AuthorityId'.png" alt="">
+                                            </div>
+                                        </div><!--username-dt end-->
+                                        <div class="user-specs">
+                                            @foreach (var aa in ViewBag.Userinfolar)
+                                            {
+                                                <h3>@aa.UserName @aa.UserSurname</h3>
+                                                <span>@aa.DepartmentName @aa.StatusName</span>
+
+                                            }
+                                        </div>
+                                    </div><!--user-profile end-->
+                                </div><!--user-data end-->
+
+
+
+
+
+                                <div class="tags-sec full-width">
+                                    <div class="cp-sec">
+                                        <img src="~/images/logo2.png" width="90" alt="">
+                                        <p style="font-size:15px;"><img src="~/images/cp.png" alt="" >Copyright 2018</p>
+                                    </div>
+                                </div><!--tags-sec end-->
+
+
+
+                            </div><!--main-left-sidebar end-->
+                        </div>
+                        <div class="col-lg-6 col-md-8 no-pd">
+                            <div class="main-ws-sec">
+
+
+                                <div class="post-topbar">
+                                    <div class="user-picy">
+                                        <img src="~/images/resources/user-pic'@ViewBag.usermodeli.AuthorityId'.png" alt="">
+                                    </div>
+                                    <div class="post-st">
+                                        <ul>
+                                            <li><a class="post_project" href="#" title="">Post a Project</a></li>
+                                            <li><a class="post-jb active" href="#" title="">Post a Entry</a></li>
+                                        </ul>
+                                    </div><!--post-st end-->
+                                </div><!--post-topbar end-->
+
+
+                                @foreach (var s in ViewBag.postveuser)
+                                {
+                                    @if(s.DepartmentId == ViewBag.usermodeli.DepartmentId || ViewBag.usermodeli.DepartmentId==1)
+                                    {
+
+
+                                    <div class="posts-section">
+                                        <div class="posty">
+                                            <div class="post-bar no-margin">
+                                                <div class="post_topbar">
+                                                    <div class="usy-dt">
+                                                        <img src="~/images/resources/us-pic'@s.AuthorityId'.png" alt="">
+                                                        <div class="usy-name">
+                                                            <h3>@s.Name @s.Surname</h3>
+                                                            <span><img src="~/images/clock.png" alt="">@s.StatusName</span>
+                                                        </div>
+                                                    </div>
+
+                                                    @if (s.Id == ViewBag.userid || @ViewBag.usermodeli.AuthorityId == 1)
+                                                    {
+
+                                                        <div class="ed-opts">
+                                                            <a href="#" title="" class="ed-opts-open"> X </a>
+                                                            <ul class="ed-options">
+                                                                <li>
+                                                                    <a href="~/Home/PostSil/@s.PostId">SİL</a>
+
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+
+                                                    }
+                                                </div>
+                                                <div class="epi-sec">
+                                                    <ul class="descp">
+                                                        <li><img src="~/images/icon8.png" alt=""><span>@s.DepartmentName</span></li>
+                                                        <li><img src="~/images/icon9.png" alt=""><span>@s.UniversityName</span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="job_descp">
+                                                    <h3>@s.PostName</h3>
+                                                    <p>@s.Text</p>
+                                                    <ul class="skill-tags">
+                                                        <li><a href="#" title="">@s.Subject</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div><!--post-bar end-->
+
+
+
+                                            <div class="comment-section">
+
+                                                @foreach (var aa in ViewBag.comment)
+                                                {
+                                                    @if (aa.PostId == s.PostId)
+                                                    {
+
+
+                                                        <div class="comment-sec">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="comment-list">
+                                                                        <div class="bg-img">
+                                                                            <img src="~/images/resources/bg-img'@aa.CommentUserAuthorityId'.png" alt="">
+                                                                        </div>
+
+                                                                        <div class="comment">
+                                                                            <h3>@aa.CommentUserName @aa.CommentUserSurname </h3>
+                                                                            <span><img src="~/images/clock.png" alt=""> @aa.CommentUserStatus</span>
+                                                                            <p>@aa.CommentName</p>
+
+                                                                            @if (aa.CommentUserId == ViewBag.userid || @ViewBag.usermodeli.AuthorityId == 1)
+                                                                            {
+                                                                                <a href="~/Home/CommentSil/@aa.CommentId"> Delete </a>
+                                                                            }
+                                                                        </div>
+                                                                    </div><!--comment-list end-->
+                                                                </li>
+                                                            </ul>
+                                                        </div><!--comment-sec end-->
+                                                    }
+                                                }
+                                                <div class="post-comment">
+
+                                                    <div class="comment_box">
+                                                        @using (Html.BeginForm("CommentKayit", "Home", FormMethod.Post))
+                                                        {
+
+
+                                                            <input type="text" name="commentname" placeholder="Post a comment">
+                                                            <button type="submit" value=@s.PostId @ViewBag.userid name="postid">Send</button>
+                                                        }
+                                                    </div>
+                                                </div><!--post-comment end-->
+
+
+                                            </div><!--comment-section end-->
+
+                                        </div><!--posty end-->
+                                    </div><!--posts-section end-->
+                                    }
+                                }
+
+
+
+
+
+
+
+
+                            </div><!--main-ws-sec end-->
+                        </div>
+                        <div class="col-lg-3 pd-right-none no-pd">
+                            <div class="right-sidebar">
+                                <div class="widget widget-about">
+                                    <img src="~/images/wd-logo.png" width="220" alt="">
+                                    <h3>12Ceyrek</h3>
+                                    <span>Communication Platform</span>
+                                    <div class="sign_link">
+                                        <h3><a href="~/Home/LoginPage" title="">Sign out</a></h3>                                        
+                                    </div>
+                                </div><!--widget-about end-->
+                                <div class="widget widget-jobs">
+                                    <div class="sd-title">
+                                        <h3>Ads</h3>
+                                        <i class="la la-ellipsis-v"></i>
+                                    </div>
+
+                                </div><!--widget-jobs end-->
+                            </div><!--right-sidebar end-->
+                        </div>
+
+
+
+
+
+                        <div class="post-popup job_post">
+                            <div class="post-project">
+                                <h3>Post a Entry</h3>
+                                <div class="post-project-fields">
+                                    @using (Html.BeginForm("PostKayit", "Home", FormMethod.Post))
+                                    {
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <input type="text" name="title" placeholder="Title">
+                                            </div>
+                                            <div class="col-lg-12">
+
+                                                <input type="text" name="subject" placeholder="Subject">
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <textarea name="text" placeholder="Description"></textarea>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <ul>
+                                                    <li><button class="active" type="submit" value="PostSend">Post</button></li>
+                                                    <li><a href="#" title="">Cancel</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div><!--post-project-fields end-->
+                                <a href="#" title="">Kapat</a>
+                            </div><!--post-project end-->
+                        </div><!--post-project-popup end-->
+
+                        <div class="post-popup pst-pj">
+                            <div class="post-project">
+                                <h3>Post a project</h3>
+                                <div class="post-project-fields">
+                                    <form method="post">
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+                                                <input type="text" name="projecttitle" placeholder="Title">
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <input type="text" name="projectplatform" placeholder="Platform">
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <input type="text" name="projectlink" placeholder="Link">
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <textarea name="projecttext" placeholder="Description"></textarea>
+                                            </div>
+
+                                            <br><br><br><br>
+                                            <div class="col-lg-12">
+                                                <ul>
+                                                    <li><button class="active" type="submit" value="post2">Post</button></li>
+                                                    <li><a href="#" title="">Cancel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!--post-project-fields end-->
+                                <a href="#" title="">Kapat</a>
+                            </div><!--post-project end-->
+                        </div><!--post-project-popup end-->
+
+
+
+
+
+
+
+                    </div>
+                </div><!-- main-section-data end-->
+            </div>
+        </div>
+    </div>
+</main>

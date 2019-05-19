@@ -1,0 +1,105 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12Ceyrek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link href="~/css/line-awesome-font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/line-awesome.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-data">
+                <div class="logo">
+                    <a asp-action="_Layout" asp-route-id="1"  title=""><img src="~/images/logo.png" alt="" width="50"></a>
+                </div><!--logo end-->
+
+                <nav>
+                    <ul>
+                        <li>
+                            <a asp-action="_Layout" asp-route-id="2" title="">
+                                <span><img src="~/images/icon1.png" alt=""></span>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="UniversityPage"  title="">
+                                <span><img src="~/images/icon2.png" alt=""></span>
+                                University
+                            </a>
+
+                        </li>
+                        <li>
+                            <a asp-action="ProjectPage"  title="">
+                                <span><img src="~/images/icon3.png" alt=""></span>
+                                Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="UserPage"  title="">
+                                <span><img src="~/images/icon4.png" alt=""></span>
+                                Profiles
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="JobsPage"  title="JobsPage">
+                                <span><img src="~/images/icon5.png" alt=""></span>
+                                Jobs
+                            </a>
+                        </li>
+                    </ul>
+                </nav><!--nav end-->
+                <div class="menu-btn">
+                    <a href="#" title=""><i class="fa fa-bars"></i></a>
+                </div><!--menu-btn end-->
+                <div class="user-account">
+                    <div class="user-info">
+                        <img src="~/images/resources/user.png" alt="">
+                        <a href="#" title="">Settings</a>
+                    </div>
+                    <div class="user-account-settingss">
+                        <h3 class="us-links"><a asp-action="ResetPasswordPage" title="">Reset Password</a></h3>
+                    </div><!--user-account-settingss end-->
+                </div>
+            </div><!--header-data end-->
+        </div>
+    </header><!--header end-->
+
+    <main role="main">
+
+        @RenderBody()
+
+
+
+    </main>
+
+    <script src="~/js/bootsrap.min.js"></script>
+    <script src="~/js/disabled.js"></script>
+    <script src="~/js/jquery.mCustomScrollbar.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/script.js"></script>
+    <script src="~/js/scrollbar.js"></script>
+    <script src="~/lib/slick/slick.min.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿@model  IEnumerable<User>
+@{
+    ViewData["Title"] = "UserPage";
+}
+<section class="companies-info">
+    <div class="container">
+        <div class="company-title">
+            <h3>All Users</h3>
+        </div><!--company-title end-->
+        <div class="companies-list">
+            <div class="row">
+                @foreach (var aa in ViewBag.st_user)
+                {
+                    @if (aa.u_auth != 1 && aa.u_depId == ViewBag.usermodelii.DepartmentId)
+                    {
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="company_profile_info">
+                                <div class="company-up-info">
+                                    <img src="images/resources/pf-icon1.png" alt="">
+
+                                    <h3>@aa.u_name @aa.u_surname</h3>
+                                    <h4>@aa.u_age yaş</h4>
+                                    <h4>@aa.u_uniName </h4>
+                                    <h4>Phone Number : @aa.u_phone </h4>
+
+
+                                    <ul>
+                                        
+
+                                        <li><a href="mailto:'@aa.u_email'" title="" class="hire-us">@aa.u_email</a></li>
+                                    </ul>
+                                </div>
+
+                            </div><!--company_profile_info end-->
+                        </div>
+                    }
+                }
+            </div>
+        </div><!--companies-list end-->
+
+    </div>
+</section>
+
